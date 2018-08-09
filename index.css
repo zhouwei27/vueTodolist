@@ -1,0 +1,119 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+#main{
+    width: 100%;
+}
+.list .top .active{
+    background-color: blue;
+    color: white;
+    z-index: 100;
+}
+.plan{
+    height: 150px;
+    text-align: center;
+    background-color: #eee;
+}
+.plan h1{
+    font-size: 40px;
+    padding-top:35px;
+}
+.add{
+    height:50px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    text-align: center;
+    line-height: 50px;
+}
+.add input{
+    margin-right: 5px;
+    display: inline-block;
+    height:30px;
+    width:300px;
+    border:1px solid #e3e3e3;
+    border-radius: 5px;
+}
+.add button{
+    display: inline-block;
+    height:30px;
+    color:white;
+    background: blue;
+    width:80px;
+    border:none;
+    border-radius: 5px;
+    
+}
+.list .top{
+    height:50px;
+    line-height: 50px;
+    background: #eee;
+    position: relative;
+}
+.top span{
+    margin-left:20px;
+}
+.top button{
+    display: inline-block;
+    height:30px;
+    background: white;
+    width:60px;
+    position: absolute;
+    top:10px;
+    border: none;
+}
+.top .all{
+    width:50px;
+    right:140px;
+    border-radius:5px 0 0 5px;
+    border-right: 1px solid #e3e3e3;
+}
+.top .finished{
+    right:80px;
+    border-right: 1px solid #e3e3e3;
+}
+.top .unfinish{
+    right:20px;
+    border-radius:0 5px 5px 0;
+}
+.list{
+    border: 1px solid #e3e3e3;
+}
+.list ul li{
+    height: 50px;
+    line-height: 50px;
+    padding-left:20px;
+    border-bottom: 1px solid #e3e3e3;
+    position: relative;
+}
+.reminder{
+    margin-top:20px;
+}
+.list .delete{
+    background: red;
+    color: white;
+    width:45px;
+    text-align: center;
+    height:30px;
+    line-height: 30px;
+    border: none;
+    border-radius:0 5px 5px 0;
+    position: absolute;
+    right:20px;
+    top:10px;
+}
+.list .not{
+    width:100px;
+    background: orange;
+    color:white;
+    height:30px;
+    line-height: 30px;
+    border: none;
+    border-radius:5px 0 0 5px;
+    position: absolute;
+    right:65px;
+    top:10px;
+}
+.list .nota{
+    background: green;
+}
