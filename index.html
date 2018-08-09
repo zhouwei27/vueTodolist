@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>VueTodolist</title>
+    <link href="./index.css" type="text/css" rel="stylesheet"/>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="main">
+        <div class="plan">
+            <h1>Vue Todo</h1>
+            <p>添加任务，管理每日计划</p>
+        </div>
+        <div class="add">
+            <input type="text" placeholder="今天计划完成什么？" v-model="todovalue"/>
+            <button v-on:click="handleBtnclick">添加任务</button>
+        </div>
+        <div class="list">
+            <div class="top">
+                <span>任务列表</span>
+                <button class="all" v-on:click="all" :class="{active:flag===0}">全部</button>
+                <button class="finished"  v-on:click="finished" :class="{active:flag===1}">已完成</button>
+                <button class="unfinish"  v-on:click="unfinish" :class="{active:flag===2}">未完成</button>    
+            </div>
+            <div class="list">
+                <ul v-if="flag===0">
+                    <li v-for="(item,index) in list">
+                        <span>{{item.content}}</span>
+                        <button class="not"  v-on:click="changeclick(index)"  :class="{nota:item.log}">{{item.data}}</button>
+                        <button class="delete" v-on:click="deleteclick(index)">删除</button>
+                    </li>
+                </ul>
+                <ul v-if="flag===1">
+                    <li v-for="(item,index) in list" v-if='item.isfinished'>
+                        <span>{{item.content}}</span>
+                        <button class="not"  v-on:click="changeclick(index)" :class="{nota:item.log}">{{item.data}}</button>
+                        <button class="delete" v-on:click="deleteclick(index)">删除</button>
+                    </li>
+                </ul>
+                <ul v-if="flag===2">
+                    <li v-for="(item,index) in list" v-if='!item.isfinished' >
+                        <span>{{item.content}}</span>
+                        <button class="not"  v-on:click="changeclick(index)"  :class="{nota:item.log}">{{item.data}}</button>
+                        <button class="delete" v-on:click="deleteclick(index)">删除</button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="reminder">
+            <p>共{{a}}项任务，已完成{{b}}项，未完成{{c}}项</p>
+        </div>
+    </div>
+
+    <script>
+        var app=new Vue({
+            el: '#main',
+            data:{
+                todovalue:"",
+                list:[],
+                flag:0,
+                dataa:{
+                    true:"标签完成",
+                    false:"标签未完成"
+                }
+            },
+            computed:{
+                a:function(){
+                    return this.list.filter(function(item){
+                        return item;
+                    }).length;
+                },
+                b:function(){
+                    return this.list.filter(function(item){
+                        return item.isfinished;
+                    }).length;
+                },
+                c:function(){
+                    return this.list.filter(function(item){
+                        return !item.isfinished;
+                    }).length;
+                }
+            },
+            methods:{
+                handleBtnclick:function(){
+                    let obj = {
+                        content : this.todovalue,
+                        isfinished : false,
+                        data:"标签未完成",
+                        log:false
+                    }
+                    this.list.push(obj);
+                    this.todovalue="";
+                },
+                deleteclick:function(index){
+                    this.list.splice(index,1);
+                },
+                changeclick:function(index){
+                   this.list[index].isfinished=!this.list[index].isfinished;
+                   if(this.list[index].isfinished){
+                       this.list[index].data=this.dataa.true;
+                       this.list[index].log=true;
+                    }
+                    else{
+                        this.list[index].data=this.dataa.false;;
+                        this.list[index].log=false;
+                    }
+                    return this.list[index].data;
+                },
+                all: function(){
+                    this.flag=0;
+                },
+                finished: function(){
+                    this.flag=1;
+                },
+                unfinish: function(){ 
+                    this.flag=2;
+                }
+            }
+        })
+    </script>
+</body>
+</html>
